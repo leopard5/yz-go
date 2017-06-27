@@ -10,6 +10,7 @@ type Sortable interface {
 	Sort()
 }
 
+//go test
 type GenericSeq interface {
 	Sortable
 	Append(e interface{}) bool

@@ -5,6 +5,7 @@ import (
 	"fmt"
 )
 
+//go test
 func main() {
 	input := float32(2.33)
 	output, err := cgolib.Sqrt(input)
