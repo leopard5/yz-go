@@ -57,6 +57,6 @@ _obj
 *.out
 *.di
 *.callgrind
-.idea
-projectFilesBackup
+.idea**/*
+projectFilesBackup**/*
 
