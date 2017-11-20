@@ -57,5 +57,6 @@ _obj
 *.out
 *.di
 *.callgrind
-.DS_Store
+.idea
+projectFilesBackup
 

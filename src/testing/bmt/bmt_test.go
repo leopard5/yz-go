@@ -16,3 +16,9 @@ func Benchmark(b *testing.B) {
 		b.StartTimer()
 	}
 }
+
+func testASAS() {
+	if false {
+
+	}
+}
