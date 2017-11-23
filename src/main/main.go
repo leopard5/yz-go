@@ -3,12 +3,9 @@ package main
 import (
 	"fmt"
 	"container/list"
+	"sync"
+	"os"
 )
-
-type user struct {
-	name string // name
-	age  int    // age
-}
 
 func init() {
 	fmt.Println("init fuc exec")
@@ -56,6 +53,15 @@ func main() {
 	rect4 := &Rect{width: 100, height: 200}
 	fmt.Println(*rect4)
 
+	user1 := new(user)
+	user1.age = 78
+	user1.name = "ddd"
+	fmt.Println(user1)
+
+	pid := os.Getgid()
+	ppid := os.Getppid()
+	fmt.Println(pid)
+	fmt.Println(ppid)
 }
 
 func Contains(l *list.List, value string) (bool, *list.Element) {
@@ -107,4 +113,10 @@ func NewRect(x, y, width, height float64) *Rect {
 
 	return &Rect{x, y, width, height}
 
+}
+
+type user struct {
+	lock sync.Mutex
+	name string
+	age  int
 }
