@@ -48,6 +48,8 @@ Temporary Items
 
 
 # my
+/.idea
+*.iml
 bin**/*
 pkg**/*
 logs**/*
