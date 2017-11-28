@@ -49,6 +49,8 @@ Temporary Items
 
 # my
 /.idea
+/.idea**/*
+/projectFilesBackup**/*
 *.iml
 bin**/*
 pkg**/*
@@ -59,6 +61,6 @@ _obj
 *.out
 *.di
 *.callgrind
-.idea**/*
-projectFilesBackup**/*
+
+
 

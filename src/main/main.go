@@ -11,6 +11,10 @@ func init() {
 	fmt.Println("init fuc exec")
 }
 
+func typeChange(input int) float32 {
+	return float32(input)
+}
+
 func main() {
 
 	var a int
@@ -62,6 +66,8 @@ func main() {
 	ppid := os.Getppid()
 	fmt.Println(pid)
 	fmt.Println(ppid)
+
+	fmt.Println(typeChange(99))
 }
 
 func Contains(l *list.List, value string) (bool, *list.Element) {
