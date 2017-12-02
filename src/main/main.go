@@ -5,6 +5,7 @@ import (
 	"container/list"
 	"sync"
 	"os"
+	"time"
 )
 
 func init() {
@@ -125,4 +126,25 @@ type user struct {
 	lock sync.Mutex
 	name string
 	age  int
+}
+
+func testChannel() {
+	//创建了一个定时器，2秒后会发送事件到timer1.C channel
+	timer1 := time.NewTimer(time.Second * 2)
+
+	//等待定时器到期
+	data := <-timer1.C //接收到的数据 2016-07-16 15:24:19.337701998 +0800 CST
+	fmt.Println("Timer 1 expired")
+	fmt.Println("Timer 1 expired", data)
+	timer2 := time.NewTimer(time.Second)
+	go func() {
+		<-timer2.C
+		fmt.Println("Timer 2 expired")
+	}()
+
+	//关闭定时器
+	stop2 := timer2.Stop()
+	if stop2 {
+		fmt.Println("Timer 2 stopped")
+	}
 }
