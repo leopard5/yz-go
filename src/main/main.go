@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"container/list"
 	"sync"
-	"os"
+	//"os"
 	"time"
+	//"runtime"
+	"runtime"
 )
 
 func init() {
@@ -16,59 +18,63 @@ func typeChange(input int) float32 {
 	return float32(input)
 }
 
+
 func main() {
+	//var a int
+	//a = 9
+	//fmt.Println(a)
+	//
+	//b := int(99)
+	//fmt.Println(b)
+	//
+	//intTest := int(98)
+	//strTest := string("go land")
+	//fmt.Println(intTest)
+	//fmt.Println(strTest)
+	//
+	//array1 := []string{"111", "bb", "980"}
+	//strings := append(array1, "abc")
+	//fmt.Println(len(array1))
+	//fmt.Println(strings)
+	//fmt.Println("bbbbb")
+	//
+	//p := new(user)
+	//p.name = "qiyz"
+	//p.age = 12
+	//fmt.Println(p)
+	//
+	//m := make(map[string]string)
+	//m["a"] = "i"
+	//m["c"] = "9"
+	//fmt.Println(m)
+	//
+	//for key, val := range m {
+	//	//fmt.Println("key=%s,value=%s", key, val)
+	//	fmt.Printf("key=%s,value=%s\n", key, val)
+	//}
+	////sliceTest()
+	//
+	//rect3 := &Rect{0, 0, 100, 200}
+	//fmt.Println(*rect3)
+	//
+	//rect4 := &Rect{width: 100, height: 200}
+	//fmt.Println(*rect4)
+	//
+	//user1 := new(user)
+	//user1.age = 78
+	//user1.name = "ddd"
+	//fmt.Println(user1)
+	//
+	//pid := os.Getgid()
+	//ppid := os.Getppid()
+	//fmt.Println(pid)
+	//fmt.Println(ppid)
+	//
+	//fmt.Println(typeChange(99))
 
-	var a int
-	a = 9
-	fmt.Println(a)
+	exampleGo()
 
-	b := int(99)
-	fmt.Println(b)
-
-	intTest := int(98)
-	strTest := string("go land")
-	fmt.Println(intTest)
-	fmt.Println(strTest)
-
-	array1 := []string{"111", "bb", "980"}
-	strings := append(array1, "abc")
-	fmt.Println(len(array1))
-	fmt.Println(strings)
-	fmt.Println("bbbbb")
-
-	p := new(user)
-	p.name = "qiyz"
-	p.age = 12
-	fmt.Println(p)
-
-	m := make(map[string]string)
-	m["a"] = "i"
-	m["c"] = "9"
-	fmt.Println(m)
-
-	for key, val := range m {
-		//fmt.Println("key=%s,value=%s", key, val)
-		fmt.Printf("key=%s,value=%s\n", key, val)
-	}
-	//sliceTest()
-
-	rect3 := &Rect{0, 0, 100, 200}
-	fmt.Println(*rect3)
-
-	rect4 := &Rect{width: 100, height: 200}
-	fmt.Println(*rect4)
-
-	user1 := new(user)
-	user1.age = 78
-	user1.name = "ddd"
-	fmt.Println(user1)
-
-	pid := os.Getgid()
-	ppid := os.Getppid()
-	fmt.Println(pid)
-	fmt.Println(ppid)
-
-	fmt.Println(typeChange(99))
+	//runtime.GOMAXPROCS(90)
 }
 
 func Contains(l *list.List, value string) (bool, *list.Element) {
@@ -173,4 +179,14 @@ func testChannel2() {
 	for a := 1; a <= 9; a++ {
 		<-results
 	}
+}
+
+func exampleGo() {
+	names := []string{"Eric", "Harry", "Robert", "Jim", "Mark"}
+	for _, name := range names {
+		go func(who string) {
+			fmt.Printf("Hello,  %s.\n", who)
+		}(name)
+	}
+	runtime.Gosched()
 }
