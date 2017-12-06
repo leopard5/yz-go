@@ -18,7 +18,6 @@ func typeChange(input int) float32 {
 	return float32(input)
 }
 
-
 func main() {
 	//var a int
 	//a = 9
@@ -134,7 +133,7 @@ type user struct {
 	age  int
 }
 
-func testChannel() {
+func testTimeerChannel() {
 	//创建了一个定时器，2秒后会发送事件到timer1.C channel
 	timer1 := time.NewTimer(time.Second * 2)
 
@@ -189,4 +188,38 @@ func exampleGo() {
 		}(name)
 	}
 	runtime.Gosched()
+}
+
+func sum(values []int, resultChan chan int) {
+	sum := 0
+	for _, value := range values {
+		sum += value
+	}
+	// 将计算结果发送到channel中
+	resultChan <- sum
+}
+
+func testChannel8() {
+	values := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	resultChan := make(chan int, 3)
+	go sum(values[:len(values)/2], resultChan)
+	go sum(values[len(values)/2:], resultChan)
+	go sum(values[len(values)/3:], resultChan)
+	sum1, sum2, sum3 := <-resultChan, <-resultChan, <-resultChan
+	fmt.Println("Result:", sum1, sum2, sum3)
+}
+
+func testChannel9() {
+	arrayChan := make(chan int, 20)
+	arrayInt := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15}
+	for t := 0; t < 10; t++ {
+		length := len(arrayInt)
+		go sum(arrayInt[length-t:], arrayChan)
+	}
+
+	arrayResult := [10]int{0}
+	for i := 0; i < 10; i++ {
+		arrayResult[i] = <-arrayChan
+	}
+	fmt.Println(arrayResult)
 }
